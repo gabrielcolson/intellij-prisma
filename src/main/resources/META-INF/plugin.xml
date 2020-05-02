@@ -1,0 +1,33 @@
+<idea-plugin>
+    <id>fr.gabrielcolson.prisma.prisma-intellij-plugin</id>
+    <name>Prisma</name>
+    <vendor email="gabrielcolson@hotmail.fr" url="http://github.com/gabrielcolson">Gabriel Colson</vendor>
+
+    <description>Add support for the Prisma Schema Language (PSL)</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType
+                name="Prisma"
+                implementationClass="org.intellij.sdk.language.PrismaFileType"
+                fieldName="INSTANCE"
+                language="Prisma"
+                extensions="prisma"
+        />
+        <lang.parserDefinition
+                language="Prisma"
+                implementationClass="org.intellij.sdk.language.PrismaParserDefinition"
+        />
+        <lang.syntaxHighlighterFactory
+                language="Prisma"
+                implementationClass="org.intellij.sdk.language.PrismaSyntaxHighlighterFactory"
+        />
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>

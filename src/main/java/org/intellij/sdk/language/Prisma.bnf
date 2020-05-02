@@ -1,0 +1,27 @@
+{
+  parserClass="org.intellij.sdk.language.parser.PrismaParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Prisma"
+  psiImplClassSuffix="Impl"
+  psiPackage="org.intellij.sdk.language.psi"
+  psiImplPackage="org.intellij.sdk.language.psi.impl"
+
+  elementTypeHolderClass="org.intellij.sdk.language.psi.PrismaTypes"
+  elementTypeClass="org.intellij.sdk.language.psi.PrismaElementType"
+  tokenTypeClass="org.intellij.sdk.language.psi.PrismaTokenType"
+
+  psiImplUtilClass="org.intellij.sdk.language.psi.impl.PrismaPsiImplUtil"
+}
+
+prismaFile ::= block*
+
+private block ::= COMMENT | CRLF | configBlock | modelBlock
+
+configBlock ::= configKeyword WHITE_SPACE+ IDENTIFIER WHITE_SPACE+ BLOCK_OPEN CRLF* configEntry+ BLOCK_CLOSE
+configEntry ::= COMMENT | (WHITE_SPACE* IDENTIFIER SEPARATOR STRING_LITERAL (WHITE_SPACE|CRLF)*)
+configKeyword ::= (DATASOURCE_KEYWORD|GENERATOR_KEYWORD)
+
+modelBlock ::= MODEL_KEYWORD WHITE_SPACE+ IDENTIFIER WHITE_SPACE+ BLOCK_OPEN CRLF+ modelEntry+ BLOCK_CLOSE
+modelEntry ::= COMMENT | (WHITE_SPACE* IDENTIFIER (WHITE_SPACE|CRLF)*)
