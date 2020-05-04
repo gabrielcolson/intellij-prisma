@@ -11,14 +11,14 @@ import static org.intellij.sdk.language.psi.PrismaTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.intellij.sdk.language.psi.*;
 
-public class PrismaConfigEntryImpl extends ASTWrapperPsiElement implements PrismaConfigEntry {
+public class PrismaParameterImpl extends ASTWrapperPsiElement implements PrismaParameter {
 
-  public PrismaConfigEntryImpl(@NotNull ASTNode node) {
+  public PrismaParameterImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PrismaVisitor visitor) {
-    visitor.visitConfigEntry(this);
+    visitor.visitParameter(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {

@@ -7,4 +7,13 @@ import com.intellij.psi.PsiElement;
 
 public interface PrismaModelEntry extends PsiElement {
 
+  @Nullable
+  PrismaBlockAttribute getBlockAttribute();
+
+  @NotNull
+  List<PrismaInlineAttribute> getInlineAttributeList();
+
+  @Nullable
+  PrismaType getType();
+
 }

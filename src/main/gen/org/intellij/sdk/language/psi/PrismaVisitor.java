@@ -7,6 +7,18 @@ import com.intellij.psi.PsiElement;
 
 public class PrismaVisitor extends PsiElementVisitor {
 
+  public void visitArrayValue(@NotNull PrismaArrayValue o) {
+    visitPsiElement(o);
+  }
+
+  public void visitBlock(@NotNull PrismaBlock o) {
+    visitPsiElement(o);
+  }
+
+  public void visitBlockAttribute(@NotNull PrismaBlockAttribute o) {
+    visitPsiElement(o);
+  }
+
   public void visitConfigBlock(@NotNull PrismaConfigBlock o) {
     visitPsiElement(o);
   }
@@ -19,11 +31,51 @@ public class PrismaVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitEnumBlock(@NotNull PrismaEnumBlock o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFunctionCall(@NotNull PrismaFunctionCall o) {
+    visitPsiElement(o);
+  }
+
+  public void visitInlineAttribute(@NotNull PrismaInlineAttribute o) {
+    visitPsiElement(o);
+  }
+
+  public void visitListType(@NotNull PrismaListType o) {
+    visitPsiElement(o);
+  }
+
   public void visitModelBlock(@NotNull PrismaModelBlock o) {
     visitPsiElement(o);
   }
 
   public void visitModelEntry(@NotNull PrismaModelEntry o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNullableType(@NotNull PrismaNullableType o) {
+    visitPsiElement(o);
+  }
+
+  public void visitParameter(@NotNull PrismaParameter o) {
+    visitPsiElement(o);
+  }
+
+  public void visitParameterList(@NotNull PrismaParameterList o) {
+    visitPsiElement(o);
+  }
+
+  public void visitType(@NotNull PrismaType o) {
+    visitPsiElement(o);
+  }
+
+  public void visitTypeName(@NotNull PrismaTypeName o) {
+    visitPsiElement(o);
+  }
+
+  public void visitValue(@NotNull PrismaValue o) {
     visitPsiElement(o);
   }
 

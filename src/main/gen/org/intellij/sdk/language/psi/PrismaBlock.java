@@ -5,9 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface PrismaConfigEntry extends PsiElement {
+public interface PrismaBlock extends PsiElement {
 
-  @NotNull
-  PrismaValue getValue();
+  @Nullable
+  PrismaConfigBlock getConfigBlock();
+
+  @Nullable
+  PrismaEnumBlock getEnumBlock();
+
+  @Nullable
+  PrismaModelBlock getModelBlock();
 
 }

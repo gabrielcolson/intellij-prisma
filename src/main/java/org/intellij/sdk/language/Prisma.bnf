@@ -17,11 +17,38 @@
 
 prismaFile ::= block*
 
-private block ::= COMMENT | CRLF | configBlock | modelBlock
+block ::= COMMENT | CRLF | configBlock | modelBlock | enumBlock
 
-configBlock ::= configKeyword WHITE_SPACE+ IDENTIFIER WHITE_SPACE+ BLOCK_OPEN CRLF* configEntry+ BLOCK_CLOSE
-configEntry ::= COMMENT | (WHITE_SPACE* IDENTIFIER SEPARATOR STRING_LITERAL (WHITE_SPACE|CRLF)*)
+configBlock ::= configKeyword IDENTIFIER BRACE_L configEntry+ BRACE_R
+
 configKeyword ::= (DATASOURCE_KEYWORD|GENERATOR_KEYWORD)
 
-modelBlock ::= MODEL_KEYWORD WHITE_SPACE+ IDENTIFIER WHITE_SPACE+ BLOCK_OPEN CRLF+ modelEntry+ BLOCK_CLOSE
-modelEntry ::= COMMENT | (WHITE_SPACE* IDENTIFIER (WHITE_SPACE|CRLF)*)
+configEntry ::= IDENTIFIER EQUAL value
+
+modelBlock ::= MODEL_KEYWORD IDENTIFIER BRACE_L modelEntry+ BRACE_R
+
+modelEntry ::= (IDENTIFIER type inlineAttribute*) | blockAttribute
+
+type ::= nullableType | listType | typeName
+
+typeName ::= IDENTIFIER
+
+listType ::= typeName BRACKET_L BRACKET_R
+
+nullableType ::= typeName QUESTION_MARK
+
+inlineAttribute ::= INLINE_ATTRIBUTE_NAME (PAREN_L parameterList? PAREN_R)?
+
+blockAttribute ::= BLOCK_ATTRIBUTE_NAME PAREN_L parameterList? PAREN_R
+
+parameterList ::= (parameter COMA)* parameter
+
+parameter ::= (IDENTIFIER COLON value) | value
+
+value ::= STRING_LITERAL | NUMBER | BOOLEAN | functionCall | arrayValue | IDENTIFIER
+
+arrayValue ::= BRACKET_L ((value COMA)* value)? BRACKET_R
+
+enumBlock ::= ENUM_KEYWORD IDENTIFIER BRACE_L IDENTIFIER+ BRACE_R
+
+functionCall ::= IDENTIFIER PAREN_L parameterList? PAREN_R

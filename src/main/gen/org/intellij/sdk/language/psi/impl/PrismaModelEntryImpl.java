@@ -26,4 +26,22 @@ public class PrismaModelEntryImpl extends ASTWrapperPsiElement implements Prisma
     else super.accept(visitor);
   }
 
+  @Override
+  @Nullable
+  public PrismaBlockAttribute getBlockAttribute() {
+    return findChildByClass(PrismaBlockAttribute.class);
+  }
+
+  @Override
+  @NotNull
+  public List<PrismaInlineAttribute> getInlineAttributeList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, PrismaInlineAttribute.class);
+  }
+
+  @Override
+  @Nullable
+  public PrismaType getType() {
+    return findChildByClass(PrismaType.class);
+  }
+
 }

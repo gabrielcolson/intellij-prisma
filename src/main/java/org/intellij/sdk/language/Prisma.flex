@@ -16,37 +16,45 @@ import com.intellij.psi.TokenType;
 %eof}
 
 CRLF            = \r|\n|\r\n
-whiteSpace     = [\ \n\t\f]
+WhiteSpace     = " " | \t
 INPUT_CHARACTER = [^\r\n]
 COMMENT         = "//" {INPUT_CHARACTER}* {CRLF}?
-identifierCharacter     = [a-zA-Z_0-9]
-
-separator = "="
-spacedSeparator = {whiteSpace}*{separator}{whiteSpace}*
+Name = [_a-zA-Z][a-zA-Z_0-9]*
 
 %%
 <YYINITIAL> {
-    // Comments
-    {COMMENT}                  { yybegin(YYINITIAL); return PrismaTypes.COMMENT; }
+    // Ignored
+    {COMMENT}                   { return PrismaTypes.COMMENT; }
+    {CRLF}+                     { return TokenType.WHITE_SPACE; }
+    {WhiteSpace}+               { return TokenType.WHITE_SPACE; }
+
+    // Ponctuators
+    "="                         { return PrismaTypes.EQUAL; }
+    "?"                         { return PrismaTypes.QUESTION_MARK; }
+    ","                         { return PrismaTypes.COMA; }
+    ":"                         { return PrismaTypes.COLON; }
+    "{"                         { return PrismaTypes.BRACE_L; }
+    "}"                         { return PrismaTypes.BRACE_R; }
+    "["                         { return PrismaTypes.BRACKET_L; }
+    "]"                         { return PrismaTypes.BRACKET_R; }
+    "("                         { return PrismaTypes.PAREN_L; }
+    ")"                         { return PrismaTypes.PAREN_R; }
 
     // Keywords
-    "datasource" { yybegin(YYINITIAL); return PrismaTypes.DATASOURCE_KEYWORD; }
-    "generator" { yybegin(YYINITIAL); return PrismaTypes.GENERATOR_KEYWORD; }
-    "model" { yybegin(YYINITIAL); return PrismaTypes.MODEL_KEYWORD; }
+    "datasource"                { return PrismaTypes.DATASOURCE_KEYWORD; }
+    "generator"                 { return PrismaTypes.GENERATOR_KEYWORD; }
+    "model"                     { return PrismaTypes.MODEL_KEYWORD; }
+    "enum"                      { return PrismaTypes.ENUM_KEYWORD; }
 
-    // Primitives
-    "\""{INPUT_CHARACTER}*"\""  { yybegin(YYINITIAL); return PrismaTypes.STRING_LITERAL; }
-    //{identifierCharacter}+("[]"|"?")  { yybegin(YYINITIAL); return PrismaTypes.TYPE; }
-    {identifierCharacter}+              { yybegin(YYINITIAL); return PrismaTypes.IDENTIFIER; }
+    // Literals
+    "\""{INPUT_CHARACTER}*"\""  { return PrismaTypes.STRING_LITERAL; }
+    -?[0-9]+|([0-9]*\.[0-9]+) 	{ return PrismaTypes.NUMBER; }
+    "true" | "false"            { return PrismaTypes.BOOLEAN; }
 
-    // Signs
-    {spacedSeparator} { yybegin(YYINITIAL); return PrismaTypes.SEPARATOR; }
-    "{" { yybegin(YYINITIAL); return PrismaTypes.BLOCK_OPEN; }
-    "}"  { yybegin(YYINITIAL); return PrismaTypes.BLOCK_CLOSE; }
+    // Identifier
+    {Name}                      { return PrismaTypes.IDENTIFIER; }
+    "@@"{Name}                  { return PrismaTypes.BLOCK_ATTRIBUTE_NAME; }
+    "@"{Name}                   { return PrismaTypes.INLINE_ATTRIBUTE_NAME; }
 
-    // Spaces
-    {CRLF} { yybegin(YYINITIAL); return PrismaTypes.CRLF; }
-    {whiteSpace}              { yybegin(YYINITIAL); return PrismaTypes.WHITE_SPACE; }
+    [^]                         { return TokenType.BAD_CHARACTER; }
 }
-
-[^]                                                         { return TokenType.BAD_CHARACTER; }

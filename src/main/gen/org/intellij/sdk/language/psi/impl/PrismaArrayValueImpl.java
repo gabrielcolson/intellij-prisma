@@ -11,14 +11,14 @@ import static org.intellij.sdk.language.psi.PrismaTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.intellij.sdk.language.psi.*;
 
-public class PrismaConfigEntryImpl extends ASTWrapperPsiElement implements PrismaConfigEntry {
+public class PrismaArrayValueImpl extends ASTWrapperPsiElement implements PrismaArrayValue {
 
-  public PrismaConfigEntryImpl(@NotNull ASTNode node) {
+  public PrismaArrayValueImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PrismaVisitor visitor) {
-    visitor.visitConfigEntry(this);
+    visitor.visitArrayValue(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -28,8 +28,8 @@ public class PrismaConfigEntryImpl extends ASTWrapperPsiElement implements Prism
 
   @Override
   @NotNull
-  public PrismaValue getValue() {
-    return findNotNullChildByClass(PrismaValue.class);
+  public List<PrismaValue> getValueList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, PrismaValue.class);
   }
 
 }
