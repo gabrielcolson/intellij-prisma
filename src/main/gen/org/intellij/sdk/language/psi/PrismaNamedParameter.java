@@ -5,12 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface PrismaParameter extends PsiElement {
+public interface PrismaNamedParameter extends PsiElement {
 
-  @Nullable
-  PrismaNamedParameter getNamedParameter();
+  @NotNull
+  PrismaParameterName getParameterName();
 
-  @Nullable
+  @NotNull
   PrismaValue getValue();
 
 }

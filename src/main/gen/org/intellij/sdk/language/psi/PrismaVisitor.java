@@ -39,6 +39,10 @@ public class PrismaVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitFunctionName(@NotNull PrismaFunctionName o) {
+    visitPsiElement(o);
+  }
+
   public void visitInlineAttribute(@NotNull PrismaInlineAttribute o) {
     visitPsiElement(o);
   }
@@ -51,7 +55,15 @@ public class PrismaVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitModelDefinition(@NotNull PrismaModelDefinition o) {
+    visitPsiElement(o);
+  }
+
   public void visitModelEntry(@NotNull PrismaModelEntry o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNamedParameter(@NotNull PrismaNamedParameter o) {
     visitPsiElement(o);
   }
 
@@ -64,6 +76,10 @@ public class PrismaVisitor extends PsiElementVisitor {
   }
 
   public void visitParameterList(@NotNull PrismaParameterList o) {
+    visitPsiElement(o);
+  }
+
+  public void visitParameterName(@NotNull PrismaParameterName o) {
     visitPsiElement(o);
   }
 

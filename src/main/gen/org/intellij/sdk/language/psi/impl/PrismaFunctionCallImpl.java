@@ -27,6 +27,12 @@ public class PrismaFunctionCallImpl extends ASTWrapperPsiElement implements Pris
   }
 
   @Override
+  @NotNull
+  public PrismaFunctionName getFunctionName() {
+    return findNotNullChildByClass(PrismaFunctionName.class);
+  }
+
+  @Override
   @Nullable
   public PrismaParameterList getParameterList() {
     return findChildByClass(PrismaParameterList.class);

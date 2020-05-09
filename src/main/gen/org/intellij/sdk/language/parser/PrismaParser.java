@@ -211,13 +211,14 @@ public class PrismaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // IDENTIFIER PAREN_L parameterList? PAREN_R
+  // functionName PAREN_L parameterList? PAREN_R
   public static boolean functionCall(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "functionCall")) return false;
     if (!nextTokenIs(b, IDENTIFIER)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, IDENTIFIER, PAREN_L);
+    r = functionName(b, l + 1);
+    r = r && consumeToken(b, PAREN_L);
     r = r && functionCall_2(b, l + 1);
     r = r && consumeToken(b, PAREN_R);
     exit_section_(b, m, FUNCTION_CALL, r);
@@ -229,6 +230,18 @@ public class PrismaParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(b, l, "functionCall_2")) return false;
     parameterList(b, l + 1);
     return true;
+  }
+
+  /* ********************************************************** */
+  // IDENTIFIER
+  public static boolean functionName(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "functionName")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IDENTIFIER);
+    exit_section_(b, m, FUNCTION_NAME, r);
+    return r;
   }
 
   /* ********************************************************** */
@@ -284,13 +297,15 @@ public class PrismaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MODEL_KEYWORD IDENTIFIER BRACE_L modelEntry+ BRACE_R
+  // MODEL_KEYWORD modelDefinition BRACE_L modelEntry+ BRACE_R
   public static boolean modelBlock(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "modelBlock")) return false;
     if (!nextTokenIs(b, MODEL_KEYWORD)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, MODEL_KEYWORD, IDENTIFIER, BRACE_L);
+    r = consumeToken(b, MODEL_KEYWORD);
+    r = r && modelDefinition(b, l + 1);
+    r = r && consumeToken(b, BRACE_L);
     r = r && modelBlock_3(b, l + 1);
     r = r && consumeToken(b, BRACE_R);
     exit_section_(b, m, MODEL_BLOCK, r);
@@ -309,6 +324,18 @@ public class PrismaParser implements PsiParser, LightPsiParser {
       if (!empty_element_parsed_guard_(b, "modelBlock_3", c)) break;
     }
     exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // IDENTIFIER
+  public static boolean modelDefinition(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "modelDefinition")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IDENTIFIER);
+    exit_section_(b, m, MODEL_DEFINITION, r);
     return r;
   }
 
@@ -349,6 +376,20 @@ public class PrismaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // parameterName COLON value
+  public static boolean namedParameter(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "namedParameter")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = parameterName(b, l + 1);
+    r = r && consumeToken(b, COLON);
+    r = r && value(b, l + 1);
+    exit_section_(b, m, NAMED_PARAMETER, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // typeName QUESTION_MARK
   public static boolean nullableType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "nullableType")) return false;
@@ -362,25 +403,14 @@ public class PrismaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (IDENTIFIER COLON value) | value
+  // namedParameter | value
   public static boolean parameter(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "parameter")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, PARAMETER, "<parameter>");
-    r = parameter_0(b, l + 1);
+    r = namedParameter(b, l + 1);
     if (!r) r = value(b, l + 1);
     exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  // IDENTIFIER COLON value
-  private static boolean parameter_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameter_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, IDENTIFIER, COLON);
-    r = r && value(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -415,6 +445,18 @@ public class PrismaParser implements PsiParser, LightPsiParser {
     r = parameter(b, l + 1);
     r = r && consumeToken(b, COMA);
     exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // IDENTIFIER
+  public static boolean parameterName(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameterName")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IDENTIFIER);
+    exit_section_(b, m, PARAMETER_NAME, r);
     return r;
   }
 

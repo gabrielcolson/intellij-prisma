@@ -27,9 +27,15 @@ public class PrismaParameterImpl extends ASTWrapperPsiElement implements PrismaP
   }
 
   @Override
-  @NotNull
+  @Nullable
+  public PrismaNamedParameter getNamedParameter() {
+    return findChildByClass(PrismaNamedParameter.class);
+  }
+
+  @Override
+  @Nullable
   public PrismaValue getValue() {
-    return findNotNullChildByClass(PrismaValue.class);
+    return findChildByClass(PrismaValue.class);
   }
 
 }

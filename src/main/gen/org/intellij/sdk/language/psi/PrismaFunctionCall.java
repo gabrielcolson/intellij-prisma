@@ -7,6 +7,9 @@ import com.intellij.psi.PsiElement;
 
 public interface PrismaFunctionCall extends PsiElement {
 
+  @NotNull
+  PrismaFunctionName getFunctionName();
+
   @Nullable
   PrismaParameterList getParameterList();
 

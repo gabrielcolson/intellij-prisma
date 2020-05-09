@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface PrismaModelBlock extends PsiElement {
 
   @NotNull
+  PrismaModelDefinition getModelDefinition();
+
+  @NotNull
   List<PrismaModelEntry> getModelEntryList();
 
 }

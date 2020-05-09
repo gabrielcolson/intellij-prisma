@@ -31,6 +31,7 @@
                 language="Prisma"
                 implementationClass="org.intellij.sdk.language.PrismaSyntaxHighlighterFactory"
         />
+        <annotator language="Prisma" implementationClass="org.intellij.sdk.language.PrismaAnnotator"/>
     </extensions>
 
     <actions>

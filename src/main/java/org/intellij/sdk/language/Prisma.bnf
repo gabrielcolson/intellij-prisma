@@ -25,7 +25,9 @@ configKeyword ::= (DATASOURCE_KEYWORD|GENERATOR_KEYWORD)
 
 configEntry ::= IDENTIFIER EQUAL value
 
-modelBlock ::= MODEL_KEYWORD IDENTIFIER BRACE_L modelEntry+ BRACE_R
+modelBlock ::= MODEL_KEYWORD modelDefinition BRACE_L modelEntry+ BRACE_R
+
+modelDefinition ::= IDENTIFIER
 
 modelEntry ::= (IDENTIFIER type inlineAttribute*) | blockAttribute
 
@@ -43,7 +45,11 @@ blockAttribute ::= BLOCK_ATTRIBUTE_NAME PAREN_L parameterList? PAREN_R
 
 parameterList ::= (parameter COMA)* parameter
 
-parameter ::= (IDENTIFIER COLON value) | value
+parameter ::= namedParameter | value
+
+namedParameter ::= parameterName COLON value
+
+parameterName ::= IDENTIFIER
 
 value ::= STRING_LITERAL | NUMBER | BOOLEAN | functionCall | arrayValue | IDENTIFIER
 
@@ -51,4 +57,6 @@ arrayValue ::= BRACKET_L ((value COMA)* value)? BRACKET_R
 
 enumBlock ::= ENUM_KEYWORD IDENTIFIER BRACE_L IDENTIFIER+ BRACE_R
 
-functionCall ::= IDENTIFIER PAREN_L parameterList? PAREN_R
+functionCall ::= functionName PAREN_L parameterList? PAREN_R
+
+functionName ::= IDENTIFIER

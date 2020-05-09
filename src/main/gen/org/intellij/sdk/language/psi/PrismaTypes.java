@@ -16,13 +16,17 @@ public interface PrismaTypes {
   IElementType CONFIG_KEYWORD = new PrismaElementType("CONFIG_KEYWORD");
   IElementType ENUM_BLOCK = new PrismaElementType("ENUM_BLOCK");
   IElementType FUNCTION_CALL = new PrismaElementType("FUNCTION_CALL");
+  IElementType FUNCTION_NAME = new PrismaElementType("FUNCTION_NAME");
   IElementType INLINE_ATTRIBUTE = new PrismaElementType("INLINE_ATTRIBUTE");
   IElementType LIST_TYPE = new PrismaElementType("LIST_TYPE");
   IElementType MODEL_BLOCK = new PrismaElementType("MODEL_BLOCK");
+  IElementType MODEL_DEFINITION = new PrismaElementType("MODEL_DEFINITION");
   IElementType MODEL_ENTRY = new PrismaElementType("MODEL_ENTRY");
+  IElementType NAMED_PARAMETER = new PrismaElementType("NAMED_PARAMETER");
   IElementType NULLABLE_TYPE = new PrismaElementType("NULLABLE_TYPE");
   IElementType PARAMETER = new PrismaElementType("PARAMETER");
   IElementType PARAMETER_LIST = new PrismaElementType("PARAMETER_LIST");
+  IElementType PARAMETER_NAME = new PrismaElementType("PARAMETER_NAME");
   IElementType TYPE = new PrismaElementType("TYPE");
   IElementType TYPE_NAME = new PrismaElementType("TYPE_NAME");
   IElementType VALUE = new PrismaElementType("VALUE");
@@ -77,6 +81,9 @@ public interface PrismaTypes {
       else if (type == FUNCTION_CALL) {
         return new PrismaFunctionCallImpl(node);
       }
+      else if (type == FUNCTION_NAME) {
+        return new PrismaFunctionNameImpl(node);
+      }
       else if (type == INLINE_ATTRIBUTE) {
         return new PrismaInlineAttributeImpl(node);
       }
@@ -86,8 +93,14 @@ public interface PrismaTypes {
       else if (type == MODEL_BLOCK) {
         return new PrismaModelBlockImpl(node);
       }
+      else if (type == MODEL_DEFINITION) {
+        return new PrismaModelDefinitionImpl(node);
+      }
       else if (type == MODEL_ENTRY) {
         return new PrismaModelEntryImpl(node);
+      }
+      else if (type == NAMED_PARAMETER) {
+        return new PrismaNamedParameterImpl(node);
       }
       else if (type == NULLABLE_TYPE) {
         return new PrismaNullableTypeImpl(node);
@@ -97,6 +110,9 @@ public interface PrismaTypes {
       }
       else if (type == PARAMETER_LIST) {
         return new PrismaParameterListImpl(node);
+      }
+      else if (type == PARAMETER_NAME) {
+        return new PrismaParameterNameImpl(node);
       }
       else if (type == TYPE) {
         return new PrismaTypeImpl(node);
