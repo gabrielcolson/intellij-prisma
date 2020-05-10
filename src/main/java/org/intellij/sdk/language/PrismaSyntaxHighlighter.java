@@ -60,6 +60,7 @@ public class PrismaSyntaxHighlighter extends SyntaxHighlighterBase {
         KEYWORDS.add(PrismaTypes.GENERATOR_KEYWORD);
         KEYWORDS.add(PrismaTypes.MODEL_KEYWORD);
         KEYWORDS.add(PrismaTypes.ENUM_KEYWORD);
+        KEYWORDS.add(PrismaTypes.TYPE_KEYWORD);
     }
 
     @NotNull

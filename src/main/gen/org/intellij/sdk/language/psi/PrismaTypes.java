@@ -28,6 +28,7 @@ public interface PrismaTypes {
   IElementType PARAMETER_LIST = new PrismaElementType("PARAMETER_LIST");
   IElementType PARAMETER_NAME = new PrismaElementType("PARAMETER_NAME");
   IElementType TYPE = new PrismaElementType("TYPE");
+  IElementType TYPE_ALIAS = new PrismaElementType("TYPE_ALIAS");
   IElementType TYPE_NAME = new PrismaElementType("TYPE_NAME");
   IElementType VALUE = new PrismaElementType("VALUE");
 
@@ -53,6 +54,7 @@ public interface PrismaTypes {
   IElementType PAREN_R = new PrismaTokenType("PAREN_R");
   IElementType QUESTION_MARK = new PrismaTokenType("QUESTION_MARK");
   IElementType STRING_LITERAL = new PrismaTokenType("STRING_LITERAL");
+  IElementType TYPE_KEYWORD = new PrismaTokenType("TYPE_KEYWORD");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
@@ -116,6 +118,9 @@ public interface PrismaTypes {
       }
       else if (type == TYPE) {
         return new PrismaTypeImpl(node);
+      }
+      else if (type == TYPE_ALIAS) {
+        return new PrismaTypeAliasImpl(node);
       }
       else if (type == TYPE_NAME) {
         return new PrismaTypeNameImpl(node);

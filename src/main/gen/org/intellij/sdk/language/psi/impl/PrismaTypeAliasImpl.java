@@ -11,14 +11,14 @@ import static org.intellij.sdk.language.psi.PrismaTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.intellij.sdk.language.psi.*;
 
-public class PrismaBlockImpl extends ASTWrapperPsiElement implements PrismaBlock {
+public class PrismaTypeAliasImpl extends ASTWrapperPsiElement implements PrismaTypeAlias {
 
-  public PrismaBlockImpl(@NotNull ASTNode node) {
+  public PrismaTypeAliasImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PrismaVisitor visitor) {
-    visitor.visitBlock(this);
+    visitor.visitTypeAlias(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -27,27 +27,15 @@ public class PrismaBlockImpl extends ASTWrapperPsiElement implements PrismaBlock
   }
 
   @Override
-  @Nullable
-  public PrismaConfigBlock getConfigBlock() {
-    return findChildByClass(PrismaConfigBlock.class);
+  @NotNull
+  public PrismaModelEntry getModelEntry() {
+    return findNotNullChildByClass(PrismaModelEntry.class);
   }
 
   @Override
-  @Nullable
-  public PrismaEnumBlock getEnumBlock() {
-    return findChildByClass(PrismaEnumBlock.class);
-  }
-
-  @Override
-  @Nullable
-  public PrismaModelBlock getModelBlock() {
-    return findChildByClass(PrismaModelBlock.class);
-  }
-
-  @Override
-  @Nullable
-  public PrismaTypeAlias getTypeAlias() {
-    return findChildByClass(PrismaTypeAlias.class);
+  @NotNull
+  public PrismaTypeName getTypeName() {
+    return findNotNullChildByClass(PrismaTypeName.class);
   }
 
 }

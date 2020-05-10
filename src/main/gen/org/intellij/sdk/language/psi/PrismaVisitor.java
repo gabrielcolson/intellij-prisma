@@ -87,6 +87,10 @@ public class PrismaVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitTypeAlias(@NotNull PrismaTypeAlias o) {
+    visitPsiElement(o);
+  }
+
   public void visitTypeName(@NotNull PrismaTypeName o) {
     visitPsiElement(o);
   }
