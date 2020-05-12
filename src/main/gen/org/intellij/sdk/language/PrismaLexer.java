@@ -53,10 +53,10 @@ class PrismaLexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 256 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\3\1\2\2\0\1\1\22\0\1\3\1\0\1\36\5\0\1\17\1\20\2\0\1\11\1\37\1\40\1"+
-    "\4\12\6\1\12\2\0\1\7\1\0\1\10\1\42\32\5\1\15\1\0\1\16\1\0\1\5\1\0\1\22\1\5"+
-    "\1\30\1\21\1\31\1\41\1\32\4\5\1\35\1\34\1\33\1\25\2\5\1\27\1\24\1\23\1\26"+
-    "\5\5\1\13\1\0\1\14\202\0");
+    "\11\0\1\3\1\2\2\0\1\1\22\0\1\3\1\0\1\40\5\0\1\17\1\20\2\0\1\11\1\41\1\42\1"+
+    "\4\12\6\1\12\2\0\1\7\1\0\1\10\1\44\32\5\1\15\1\0\1\16\1\0\1\5\1\0\1\22\1\5"+
+    "\1\30\1\21\1\31\1\43\1\32\4\5\1\35\1\34\1\33\1\25\1\37\1\5\1\27\1\24\1\23"+
+    "\1\26\3\5\1\36\1\5\1\13\1\0\1\14\202\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -66,12 +66,13 @@ class PrismaLexer implements FlexLexer {
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\2\2\1\1\1\3\1\4\1\5\1\6"+
     "\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16"+
-    "\5\3\2\1\1\3\1\1\1\17\1\0\5\3\1\0"+
-    "\1\20\1\4\1\3\1\21\1\0\2\17\6\3\1\22"+
-    "\1\3\1\23\1\24\4\3\1\25\7\3\1\26\1\27";
+    "\5\3\2\1\1\3\1\1\1\17\1\0\6\3\1\0"+
+    "\1\20\1\4\1\3\1\21\1\0\2\17\7\3\1\22"+
+    "\1\3\1\23\1\24\1\25\4\3\1\26\7\3\1\27"+
+    "\1\30";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[65];
+    int [] result = new int[68];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -96,18 +97,18 @@ class PrismaLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\43\0\106\0\151\0\214\0\257\0\322\0\43"+
-    "\0\43\0\43\0\43\0\43\0\43\0\43\0\43\0\43"+
-    "\0\43\0\365\0\u0118\0\u013b\0\u015e\0\u0181\0\u01a4\0\u01c7"+
-    "\0\u01ea\0\u020d\0\u0230\0\u01c7\0\u0253\0\u0276\0\u0299\0\u02bc"+
-    "\0\u02df\0\u01a4\0\u01a4\0\u01c7\0\u0302\0\u0325\0\u0348\0\u036b"+
-    "\0\43\0\u038e\0\u03b1\0\u03d4\0\u03f7\0\u041a\0\u043d\0\u0460"+
-    "\0\u0483\0\257\0\257\0\u04a6\0\u04c9\0\u04ec\0\u050f\0\257"+
-    "\0\u0532\0\u0555\0\u0578\0\u059b\0\u05be\0\u05e1\0\u0604\0\257"+
-    "\0\257";
+    "\0\0\0\45\0\112\0\157\0\224\0\271\0\336\0\45"+
+    "\0\45\0\45\0\45\0\45\0\45\0\45\0\45\0\45"+
+    "\0\45\0\u0103\0\u0128\0\u014d\0\u0172\0\u0197\0\u01bc\0\u01e1"+
+    "\0\u0206\0\u022b\0\u0250\0\u01e1\0\u0275\0\u029a\0\u02bf\0\u02e4"+
+    "\0\u0309\0\u032e\0\u01bc\0\u01bc\0\u01e1\0\u0353\0\u0378\0\u039d"+
+    "\0\u03c2\0\45\0\u03e7\0\u040c\0\u0431\0\u0456\0\u047b\0\u04a0"+
+    "\0\u04c5\0\u04ea\0\u050f\0\271\0\271\0\271\0\u0534\0\u0559"+
+    "\0\u057e\0\u05a3\0\271\0\u05c8\0\u05ed\0\u0612\0\u0637\0\u065c"+
+    "\0\u0681\0\u06a6\0\271\0\271";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[65];
+    int [] result = new int[68];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -133,47 +134,49 @@ class PrismaLexer implements FlexLexer {
     "\1\2\2\3\1\4\1\5\1\6\1\7\1\10\1\11"+
     "\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21"+
     "\1\22\1\6\1\23\5\6\1\24\1\25\1\6\1\26"+
-    "\1\6\1\27\2\30\1\31\1\32\44\0\2\3\43\0"+
-    "\1\4\43\0\1\33\43\0\2\6\12\0\15\6\3\0"+
-    "\1\6\7\0\1\7\31\0\1\34\7\0\2\6\12\0"+
-    "\1\6\1\35\13\6\3\0\1\6\6\0\2\6\12\0"+
-    "\6\6\1\36\6\6\3\0\1\6\6\0\2\6\12\0"+
-    "\12\6\1\37\2\6\3\0\1\6\6\0\2\6\12\0"+
-    "\10\6\1\40\4\6\3\0\1\6\6\0\2\6\12\0"+
-    "\4\6\1\41\10\6\3\0\1\6\1\0\1\42\2\0"+
-    "\33\42\1\43\4\42\6\0\1\44\41\0\2\6\12\0"+
-    "\1\6\1\45\13\6\3\0\1\6\6\0\1\46\13\0"+
-    "\15\46\3\0\1\46\1\47\1\33\1\50\1\51\40\33"+
-    "\5\0\2\6\12\0\2\6\1\52\12\6\3\0\1\6"+
-    "\6\0\2\6\12\0\5\6\1\53\7\6\3\0\1\6"+
-    "\6\0\2\6\12\0\5\6\1\54\7\6\3\0\1\6"+
-    "\6\0\2\6\12\0\12\6\1\55\2\6\3\0\1\6"+
-    "\6\0\2\6\12\0\1\56\14\6\3\0\1\6\6\0"+
-    "\2\6\12\0\14\6\1\57\3\0\1\6\6\0\2\46"+
-    "\12\0\15\46\3\0\1\46\6\0\1\60\13\0\15\60"+
-    "\3\0\1\60\3\0\1\51\45\0\2\6\12\0\1\6"+
-    "\1\61\13\6\3\0\1\6\6\0\2\6\12\0\10\6"+
-    "\1\62\4\6\3\0\1\6\6\0\2\6\12\0\13\6"+
-    "\1\63\1\6\3\0\1\6\6\0\2\6\12\0\10\6"+
-    "\1\64\4\6\3\0\1\6\6\0\2\6\12\0\10\6"+
-    "\1\65\4\6\3\0\1\6\6\0\2\6\12\0\3\6"+
-    "\1\53\11\6\3\0\1\6\6\0\2\60\12\0\15\60"+
-    "\3\0\1\60\6\0\2\6\12\0\3\6\1\66\11\6"+
-    "\3\0\1\6\6\0\2\6\12\0\6\6\1\67\6\6"+
-    "\3\0\1\6\6\0\2\6\12\0\14\6\1\70\3\0"+
-    "\1\6\6\0\2\6\12\0\4\6\1\71\10\6\3\0"+
-    "\1\6\6\0\2\6\12\0\1\6\1\72\13\6\3\0"+
-    "\1\6\6\0\2\6\12\0\5\6\1\73\7\6\3\0"+
-    "\1\6\6\0\2\6\12\0\2\6\1\74\12\6\3\0"+
-    "\1\6\6\0\2\6\12\0\6\6\1\75\6\6\3\0"+
-    "\1\6\6\0\2\6\12\0\4\6\1\76\10\6\3\0"+
-    "\1\6\6\0\2\6\12\0\7\6\1\77\5\6\3\0"+
-    "\1\6\6\0\2\6\12\0\6\6\1\100\6\6\3\0"+
-    "\1\6\6\0\2\6\12\0\10\6\1\101\4\6\3\0"+
-    "\1\6\1\0";
+    "\3\6\1\27\2\30\1\31\1\32\46\0\2\3\45\0"+
+    "\1\4\45\0\1\33\45\0\2\6\12\0\17\6\3\0"+
+    "\1\6\7\0\1\7\33\0\1\34\7\0\2\6\12\0"+
+    "\1\6\1\35\15\6\3\0\1\6\6\0\2\6\12\0"+
+    "\6\6\1\36\6\6\1\37\1\6\3\0\1\6\6\0"+
+    "\2\6\12\0\12\6\1\40\4\6\3\0\1\6\6\0"+
+    "\2\6\12\0\10\6\1\41\6\6\3\0\1\6\6\0"+
+    "\2\6\12\0\4\6\1\42\12\6\3\0\1\6\1\0"+
+    "\1\43\2\0\35\43\1\44\4\43\6\0\1\45\43\0"+
+    "\2\6\12\0\1\6\1\46\15\6\3\0\1\6\6\0"+
+    "\1\47\13\0\17\47\3\0\1\47\1\50\1\33\1\51"+
+    "\1\52\42\33\5\0\2\6\12\0\2\6\1\53\14\6"+
+    "\3\0\1\6\6\0\2\6\12\0\5\6\1\54\11\6"+
+    "\3\0\1\6\6\0\2\6\12\0\16\6\1\55\3\0"+
+    "\1\6\6\0\2\6\12\0\5\6\1\56\11\6\3\0"+
+    "\1\6\6\0\2\6\12\0\12\6\1\57\4\6\3\0"+
+    "\1\6\6\0\2\6\12\0\1\60\16\6\3\0\1\6"+
+    "\6\0\2\6\12\0\14\6\1\61\2\6\3\0\1\6"+
+    "\6\0\2\47\12\0\17\47\3\0\1\47\6\0\1\62"+
+    "\13\0\17\62\3\0\1\62\3\0\1\52\47\0\2\6"+
+    "\12\0\1\6\1\63\15\6\3\0\1\6\6\0\2\6"+
+    "\12\0\10\6\1\64\6\6\3\0\1\6\6\0\2\6"+
+    "\12\0\10\6\1\65\6\6\3\0\1\6\6\0\2\6"+
+    "\12\0\13\6\1\66\3\6\3\0\1\6\6\0\2\6"+
+    "\12\0\10\6\1\67\6\6\3\0\1\6\6\0\2\6"+
+    "\12\0\10\6\1\70\6\6\3\0\1\6\6\0\2\6"+
+    "\12\0\3\6\1\54\13\6\3\0\1\6\6\0\2\62"+
+    "\12\0\17\62\3\0\1\62\6\0\2\6\12\0\3\6"+
+    "\1\71\13\6\3\0\1\6\6\0\2\6\12\0\6\6"+
+    "\1\72\10\6\3\0\1\6\6\0\2\6\12\0\14\6"+
+    "\1\73\2\6\3\0\1\6\6\0\2\6\12\0\4\6"+
+    "\1\74\12\6\3\0\1\6\6\0\2\6\12\0\1\6"+
+    "\1\75\15\6\3\0\1\6\6\0\2\6\12\0\5\6"+
+    "\1\76\11\6\3\0\1\6\6\0\2\6\12\0\2\6"+
+    "\1\77\14\6\3\0\1\6\6\0\2\6\12\0\6\6"+
+    "\1\100\10\6\3\0\1\6\6\0\2\6\12\0\4\6"+
+    "\1\101\12\6\3\0\1\6\6\0\2\6\12\0\7\6"+
+    "\1\102\7\6\3\0\1\6\6\0\2\6\12\0\6\6"+
+    "\1\103\10\6\3\0\1\6\6\0\2\6\12\0\10\6"+
+    "\1\104\6\6\3\0\1\6\1\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[1575];
+    int [] result = new int[1739];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -211,11 +214,11 @@ class PrismaLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\5\1\12\11\12\1\1\0\5\1\1\0"+
-    "\4\1\1\0\1\1\1\11\30\1";
+    "\1\0\1\11\5\1\12\11\12\1\1\0\6\1\1\0"+
+    "\4\1\1\0\1\1\1\11\32\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[65];
+    int [] result = new int[68];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -532,117 +535,122 @@ class PrismaLexer implements FlexLexer {
             { return TokenType.BAD_CHARACTER;
             } 
             // fall through
-          case 24: break;
+          case 25: break;
           case 2: 
             { return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 25: break;
+          case 26: break;
           case 3: 
             { return PrismaTypes.IDENTIFIER;
             } 
             // fall through
-          case 26: break;
+          case 27: break;
           case 4: 
             { return PrismaTypes.NUMBER;
             } 
             // fall through
-          case 27: break;
+          case 28: break;
           case 5: 
             { return PrismaTypes.EQUAL;
             } 
             // fall through
-          case 28: break;
+          case 29: break;
           case 6: 
             { return PrismaTypes.QUESTION_MARK;
             } 
             // fall through
-          case 29: break;
+          case 30: break;
           case 7: 
             { return PrismaTypes.COMA;
             } 
             // fall through
-          case 30: break;
+          case 31: break;
           case 8: 
             { return PrismaTypes.COLON;
             } 
             // fall through
-          case 31: break;
+          case 32: break;
           case 9: 
             { return PrismaTypes.BRACE_L;
             } 
             // fall through
-          case 32: break;
+          case 33: break;
           case 10: 
             { return PrismaTypes.BRACE_R;
             } 
             // fall through
-          case 33: break;
+          case 34: break;
           case 11: 
             { return PrismaTypes.BRACKET_L;
             } 
             // fall through
-          case 34: break;
+          case 35: break;
           case 12: 
             { return PrismaTypes.BRACKET_R;
             } 
             // fall through
-          case 35: break;
+          case 36: break;
           case 13: 
             { return PrismaTypes.PAREN_L;
             } 
             // fall through
-          case 36: break;
+          case 37: break;
           case 14: 
             { return PrismaTypes.PAREN_R;
             } 
             // fall through
-          case 37: break;
+          case 38: break;
           case 15: 
             { return PrismaTypes.COMMENT;
             } 
             // fall through
-          case 38: break;
+          case 39: break;
           case 16: 
             { return PrismaTypes.STRING_LITERAL;
             } 
             // fall through
-          case 39: break;
+          case 40: break;
           case 17: 
             { return PrismaTypes.INLINE_ATTRIBUTE_NAME;
             } 
             // fall through
-          case 40: break;
+          case 41: break;
           case 18: 
             { return PrismaTypes.BLOCK_ATTRIBUTE_NAME;
             } 
             // fall through
-          case 41: break;
+          case 42: break;
           case 19: 
             { return PrismaTypes.BOOLEAN;
             } 
             // fall through
-          case 42: break;
-          case 20: 
-            { return PrismaTypes.ENUM_KEYWORD;
-            } 
-            // fall through
           case 43: break;
-          case 21: 
-            { return PrismaTypes.MODEL_KEYWORD;
+          case 20: 
+            { return PrismaTypes.TYPE_KEYWORD;
             } 
             // fall through
           case 44: break;
-          case 22: 
-            { return PrismaTypes.GENERATOR_KEYWORD;
+          case 21: 
+            { return PrismaTypes.ENUM_KEYWORD;
             } 
             // fall through
           case 45: break;
-          case 23: 
-            { return PrismaTypes.DATASOURCE_KEYWORD;
+          case 22: 
+            { return PrismaTypes.MODEL_KEYWORD;
             } 
             // fall through
           case 46: break;
+          case 23: 
+            { return PrismaTypes.GENERATOR_KEYWORD;
+            } 
+            // fall through
+          case 47: break;
+          case 24: 
+            { return PrismaTypes.DATASOURCE_KEYWORD;
+            } 
+            // fall through
+          case 48: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

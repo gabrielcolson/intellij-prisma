@@ -17,7 +17,7 @@
 
 prismaFile ::= block*
 
-block ::= COMMENT | CRLF | configBlock | modelBlock | enumBlock
+block ::= COMMENT | CRLF | configBlock | modelBlock | enumBlock | typeAlias
 
 configBlock ::= configKeyword IDENTIFIER BRACE_L configEntry+ BRACE_R
 
@@ -60,3 +60,5 @@ enumBlock ::= ENUM_KEYWORD IDENTIFIER BRACE_L IDENTIFIER+ BRACE_R
 functionCall ::= functionName PAREN_L parameterList? PAREN_R
 
 functionName ::= IDENTIFIER
+
+typeAlias ::= TYPE_KEYWORD typeName EQUAL modelEntry
