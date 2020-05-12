@@ -16,4 +16,7 @@ public interface PrismaBlock extends PsiElement {
   @Nullable
   PrismaModelBlock getModelBlock();
 
+  @Nullable
+  PrismaTypeAlias getTypeAlias();
+
 }

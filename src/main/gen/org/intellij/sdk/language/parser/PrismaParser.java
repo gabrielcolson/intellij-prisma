@@ -90,7 +90,7 @@ public class PrismaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // COMMENT | CRLF | configBlock | modelBlock | enumBlock
+  // COMMENT | CRLF | configBlock | modelBlock | enumBlock | typeAlias
   public static boolean block(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "block")) return false;
     boolean r;
@@ -100,6 +100,7 @@ public class PrismaParser implements PsiParser, LightPsiParser {
     if (!r) r = configBlock(b, l + 1);
     if (!r) r = modelBlock(b, l + 1);
     if (!r) r = enumBlock(b, l + 1);
+    if (!r) r = typeAlias(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -483,6 +484,21 @@ public class PrismaParser implements PsiParser, LightPsiParser {
     if (!r) r = listType(b, l + 1);
     if (!r) r = typeName(b, l + 1);
     exit_section_(b, m, TYPE, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // TYPE_KEYWORD typeName EQUAL modelEntry
+  public static boolean typeAlias(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "typeAlias")) return false;
+    if (!nextTokenIs(b, TYPE_KEYWORD)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, TYPE_KEYWORD);
+    r = r && typeName(b, l + 1);
+    r = r && consumeToken(b, EQUAL);
+    r = r && modelEntry(b, l + 1);
+    exit_section_(b, m, TYPE_ALIAS, r);
     return r;
   }
 

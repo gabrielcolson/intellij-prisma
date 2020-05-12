@@ -45,6 +45,7 @@ Name = [_a-zA-Z][a-zA-Z_0-9]*
     "generator"                 { return PrismaTypes.GENERATOR_KEYWORD; }
     "model"                     { return PrismaTypes.MODEL_KEYWORD; }
     "enum"                      { return PrismaTypes.ENUM_KEYWORD; }
+    "type"                      { return PrismaTypes.TYPE_KEYWORD; }
 
     // Literals
     "\""{INPUT_CHARACTER}*"\""  { return PrismaTypes.STRING_LITERAL; }
