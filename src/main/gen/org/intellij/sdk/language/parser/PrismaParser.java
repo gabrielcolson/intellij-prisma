@@ -488,7 +488,7 @@ public class PrismaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // TYPE_KEYWORD typeName EQUAL modelEntry
+  // TYPE_KEYWORD typeName EQUAL type inlineAttribute*
   public static boolean typeAlias(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "typeAlias")) return false;
     if (!nextTokenIs(b, TYPE_KEYWORD)) return false;
@@ -497,9 +497,21 @@ public class PrismaParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, TYPE_KEYWORD);
     r = r && typeName(b, l + 1);
     r = r && consumeToken(b, EQUAL);
-    r = r && modelEntry(b, l + 1);
+    r = r && type(b, l + 1);
+    r = r && typeAlias_4(b, l + 1);
     exit_section_(b, m, TYPE_ALIAS, r);
     return r;
+  }
+
+  // inlineAttribute*
+  private static boolean typeAlias_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "typeAlias_4")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!inlineAttribute(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "typeAlias_4", c)) break;
+    }
+    return true;
   }
 
   /* ********************************************************** */

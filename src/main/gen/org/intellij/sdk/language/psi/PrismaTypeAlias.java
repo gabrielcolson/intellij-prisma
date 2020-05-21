@@ -8,7 +8,10 @@ import com.intellij.psi.PsiElement;
 public interface PrismaTypeAlias extends PsiElement {
 
   @NotNull
-  PrismaModelEntry getModelEntry();
+  List<PrismaInlineAttribute> getInlineAttributeList();
+
+  @NotNull
+  PrismaType getType();
 
   @NotNull
   PrismaTypeName getTypeName();

@@ -28,8 +28,14 @@ public class PrismaTypeAliasImpl extends ASTWrapperPsiElement implements PrismaT
 
   @Override
   @NotNull
-  public PrismaModelEntry getModelEntry() {
-    return findNotNullChildByClass(PrismaModelEntry.class);
+  public List<PrismaInlineAttribute> getInlineAttributeList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, PrismaInlineAttribute.class);
+  }
+
+  @Override
+  @NotNull
+  public PrismaType getType() {
+    return findNotNullChildByClass(PrismaType.class);
   }
 
   @Override
