@@ -61,4 +61,4 @@ functionCall ::= functionName PAREN_L parameterList? PAREN_R
 
 functionName ::= IDENTIFIER
 
-typeAlias ::= TYPE_KEYWORD typeName EQUAL modelEntry
+typeAlias ::= TYPE_KEYWORD typeName EQUAL type inlineAttribute*
