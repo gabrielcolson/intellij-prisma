@@ -52,6 +52,7 @@ public interface PrismaTypes {
   IElementType NUMBER = new PrismaTokenType("NUMBER");
   IElementType PAREN_L = new PrismaTokenType("PAREN_L");
   IElementType PAREN_R = new PrismaTokenType("PAREN_R");
+  IElementType PERIOD = new PrismaTokenType("PERIOD");
   IElementType QUESTION_MARK = new PrismaTokenType("QUESTION_MARK");
   IElementType STRING_LITERAL = new PrismaTokenType("STRING_LITERAL");
   IElementType TYPE_KEYWORD = new PrismaTokenType("TYPE_KEYWORD");

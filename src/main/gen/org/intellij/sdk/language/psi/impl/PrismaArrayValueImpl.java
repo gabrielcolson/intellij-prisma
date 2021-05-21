@@ -21,6 +21,7 @@ public class PrismaArrayValueImpl extends ASTWrapperPsiElement implements Prisma
     visitor.visitArrayValue(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof PrismaVisitor) accept((PrismaVisitor)visitor);
     else super.accept(visitor);

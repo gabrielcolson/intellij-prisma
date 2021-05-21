@@ -18,6 +18,7 @@ import com.intellij.psi.TokenType;
 CRLF            = \r|\n|\r\n
 WhiteSpace     = " " | \t
 INPUT_CHARACTER = [^\r\n]
+STRING_CONTENT = \\.|[^\n\"\\]
 COMMENT         = "//" {INPUT_CHARACTER}* {CRLF}?
 Name = [_a-zA-Z][a-zA-Z_0-9]*
 
@@ -34,6 +35,7 @@ Name = [_a-zA-Z][a-zA-Z_0-9]*
 "="                         { return PrismaTypes.EQUAL; }
 "?"                         { return PrismaTypes.QUESTION_MARK; }
 ","                         { return PrismaTypes.COMA; }
+"."                         { return PrismaTypes.PERIOD; }
 ":"                         { return PrismaTypes.COLON; }
 "{"                         { yybegin(IN_BLOCK); return PrismaTypes.BRACE_L; }
 "}"                         { yybegin(YYINITIAL); return PrismaTypes.BRACE_R; }
@@ -50,7 +52,7 @@ Name = [_a-zA-Z][a-zA-Z_0-9]*
 <YYINITIAL>"type"           { return PrismaTypes.TYPE_KEYWORD; }
 
 // Literals
-"\""{INPUT_CHARACTER}*"\""  { return PrismaTypes.STRING_LITERAL; }
+"\""{STRING_CONTENT}*"\""  { return PrismaTypes.STRING_LITERAL; }
 -?[0-9]+|([0-9]*\.[0-9]+) 	{ return PrismaTypes.NUMBER; }
 "true" | "false"            { return PrismaTypes.BOOLEAN; }
 

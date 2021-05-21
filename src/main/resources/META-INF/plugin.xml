@@ -8,6 +8,7 @@
 
     <change-notes><![CDATA[
        <ul>
+            <li>1.2.4: Support native database attribute syntax, fix multiple strings on one line</li>
             <li>1.2.3: Fix fields named "type" shown as an error</li>
             <li>1.2.2: Fix type aliases syntax</li>
             <li>1.2.0: Support comment shortcut, support for type aliases</li>

@@ -21,6 +21,7 @@ public class PrismaTypeAliasImpl extends ASTWrapperPsiElement implements PrismaT
     visitor.visitTypeAlias(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof PrismaVisitor) accept((PrismaVisitor)visitor);
     else super.accept(visitor);
