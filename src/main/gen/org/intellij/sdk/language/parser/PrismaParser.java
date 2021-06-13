@@ -246,7 +246,7 @@ public class PrismaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // INLINE_ATTRIBUTE_NAME (PAREN_L parameterList? PAREN_R)?
+  // INLINE_ATTRIBUTE_NAME (PERIOD IDENTIFIER)? (PAREN_L parameterList? PAREN_R)?
   public static boolean inlineAttribute(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "inlineAttribute")) return false;
     if (!nextTokenIs(b, INLINE_ATTRIBUTE_NAME)) return false;
@@ -254,32 +254,50 @@ public class PrismaParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, INLINE_ATTRIBUTE_NAME);
     r = r && inlineAttribute_1(b, l + 1);
+    r = r && inlineAttribute_2(b, l + 1);
     exit_section_(b, m, INLINE_ATTRIBUTE, r);
     return r;
   }
 
-  // (PAREN_L parameterList? PAREN_R)?
+  // (PERIOD IDENTIFIER)?
   private static boolean inlineAttribute_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "inlineAttribute_1")) return false;
     inlineAttribute_1_0(b, l + 1);
     return true;
   }
 
-  // PAREN_L parameterList? PAREN_R
+  // PERIOD IDENTIFIER
   private static boolean inlineAttribute_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "inlineAttribute_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, PERIOD, IDENTIFIER);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // (PAREN_L parameterList? PAREN_R)?
+  private static boolean inlineAttribute_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "inlineAttribute_2")) return false;
+    inlineAttribute_2_0(b, l + 1);
+    return true;
+  }
+
+  // PAREN_L parameterList? PAREN_R
+  private static boolean inlineAttribute_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "inlineAttribute_2_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
     r = consumeToken(b, PAREN_L);
-    r = r && inlineAttribute_1_0_1(b, l + 1);
+    r = r && inlineAttribute_2_0_1(b, l + 1);
     r = r && consumeToken(b, PAREN_R);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // parameterList?
-  private static boolean inlineAttribute_1_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "inlineAttribute_1_0_1")) return false;
+  private static boolean inlineAttribute_2_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "inlineAttribute_2_0_1")) return false;
     parameterList(b, l + 1);
     return true;
   }

@@ -21,6 +21,7 @@ public class PrismaParameterListImpl extends ASTWrapperPsiElement implements Pri
     visitor.visitParameterList(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof PrismaVisitor) accept((PrismaVisitor)visitor);
     else super.accept(visitor);

@@ -21,6 +21,7 @@ public class PrismaNullableTypeImpl extends ASTWrapperPsiElement implements Pris
     visitor.visitNullableType(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof PrismaVisitor) accept((PrismaVisitor)visitor);
     else super.accept(visitor);

@@ -39,7 +39,7 @@ listType ::= typeName BRACKET_L BRACKET_R
 
 nullableType ::= typeName QUESTION_MARK
 
-inlineAttribute ::= INLINE_ATTRIBUTE_NAME (PAREN_L parameterList? PAREN_R)?
+inlineAttribute ::= INLINE_ATTRIBUTE_NAME (PERIOD IDENTIFIER)? (PAREN_L parameterList? PAREN_R)?
 
 blockAttribute ::= BLOCK_ATTRIBUTE_NAME PAREN_L parameterList? PAREN_R
 
