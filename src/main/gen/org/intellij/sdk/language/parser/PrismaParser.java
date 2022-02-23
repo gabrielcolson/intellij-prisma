@@ -183,7 +183,7 @@ public class PrismaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ENUM_KEYWORD IDENTIFIER BRACE_L IDENTIFIER+ BRACE_R
+  // ENUM_KEYWORD IDENTIFIER BRACE_L enumEntry+ BRACE_R
   public static boolean enumBlock(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "enumBlock")) return false;
     if (!nextTokenIs(b, ENUM_KEYWORD)) return false;
@@ -196,19 +196,43 @@ public class PrismaParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // IDENTIFIER+
+  // enumEntry+
   private static boolean enumBlock_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "enumBlock_3")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, IDENTIFIER);
+    r = enumEntry(b, l + 1);
     while (r) {
       int c = current_position_(b);
-      if (!consumeToken(b, IDENTIFIER)) break;
+      if (!enumEntry(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "enumBlock_3", c)) break;
     }
     exit_section_(b, m, null, r);
     return r;
+  }
+
+  /* ********************************************************** */
+  // IDENTIFIER inlineAttribute*
+  public static boolean enumEntry(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "enumEntry")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IDENTIFIER);
+    r = r && enumEntry_1(b, l + 1);
+    exit_section_(b, m, ENUM_ENTRY, r);
+    return r;
+  }
+
+  // inlineAttribute*
+  private static boolean enumEntry_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "enumEntry_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!inlineAttribute(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "enumEntry_1", c)) break;
+    }
+    return true;
   }
 
   /* ********************************************************** */

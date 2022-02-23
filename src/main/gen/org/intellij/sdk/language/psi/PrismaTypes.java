@@ -15,6 +15,7 @@ public interface PrismaTypes {
   IElementType CONFIG_ENTRY = new PrismaElementType("CONFIG_ENTRY");
   IElementType CONFIG_KEYWORD = new PrismaElementType("CONFIG_KEYWORD");
   IElementType ENUM_BLOCK = new PrismaElementType("ENUM_BLOCK");
+  IElementType ENUM_ENTRY = new PrismaElementType("ENUM_ENTRY");
   IElementType FUNCTION_CALL = new PrismaElementType("FUNCTION_CALL");
   IElementType FUNCTION_NAME = new PrismaElementType("FUNCTION_NAME");
   IElementType INLINE_ATTRIBUTE = new PrismaElementType("INLINE_ATTRIBUTE");
@@ -80,6 +81,9 @@ public interface PrismaTypes {
       }
       else if (type == ENUM_BLOCK) {
         return new PrismaEnumBlockImpl(node);
+      }
+      else if (type == ENUM_ENTRY) {
+        return new PrismaEnumEntryImpl(node);
       }
       else if (type == FUNCTION_CALL) {
         return new PrismaFunctionCallImpl(node);

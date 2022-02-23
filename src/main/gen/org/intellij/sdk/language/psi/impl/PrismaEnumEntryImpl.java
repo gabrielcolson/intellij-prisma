@@ -11,14 +11,14 @@ import static org.intellij.sdk.language.psi.PrismaTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.intellij.sdk.language.psi.*;
 
-public class PrismaEnumBlockImpl extends ASTWrapperPsiElement implements PrismaEnumBlock {
+public class PrismaEnumEntryImpl extends ASTWrapperPsiElement implements PrismaEnumEntry {
 
-  public PrismaEnumBlockImpl(@NotNull ASTNode node) {
+  public PrismaEnumEntryImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PrismaVisitor visitor) {
-    visitor.visitEnumBlock(this);
+    visitor.visitEnumEntry(this);
   }
 
   @Override
@@ -29,8 +29,8 @@ public class PrismaEnumBlockImpl extends ASTWrapperPsiElement implements PrismaE
 
   @Override
   @NotNull
-  public List<PrismaEnumEntry> getEnumEntryList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, PrismaEnumEntry.class);
+  public List<PrismaInlineAttribute> getInlineAttributeList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, PrismaInlineAttribute.class);
   }
 
 }
