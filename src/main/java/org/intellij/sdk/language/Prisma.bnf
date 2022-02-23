@@ -55,7 +55,7 @@ value ::= STRING_LITERAL | NUMBER | BOOLEAN | functionCall | arrayValue | IDENTI
 
 arrayValue ::= BRACKET_L ((value COMA)* value)? BRACKET_R
 
-enumBlock ::= ENUM_KEYWORD IDENTIFIER BRACE_L IDENTIFIER+ BRACE_R
+enumBlock ::= ENUM_KEYWORD (IDENTIFIER inlineAttribute*) BRACE_L IDENTIFIER+ BRACE_R
 
 functionCall ::= functionName PAREN_L parameterList? PAREN_R
 
