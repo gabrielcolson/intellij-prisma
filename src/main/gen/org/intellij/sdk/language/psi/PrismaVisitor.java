@@ -35,6 +35,10 @@ public class PrismaVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitEnumEntry(@NotNull PrismaEnumEntry o) {
+    visitPsiElement(o);
+  }
+
   public void visitFunctionCall(@NotNull PrismaFunctionCall o) {
     visitPsiElement(o);
   }
